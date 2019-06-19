@@ -1,7 +1,7 @@
 import pytest
 
-from pyfly.core import Drone, Rotor, SpinDirections, Frame
-from pyfly.motion import UniformAcceleratedMotion
+from plane.core import Drone, Rotor, SpinDirections, Frame
+from plane.motion import UniformAcceleratedMotion
 
 
 class TestDrone(object):

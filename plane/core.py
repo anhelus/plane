@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
-""" Models used within PyFly.
+""" Models used within Plane.
 
-Within these module, the main models used within PyFly are defined and described.
+Within these module, the main models used within Plane are defined and described.
 """
 import math
 
