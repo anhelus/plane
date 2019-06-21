@@ -126,12 +126,15 @@ class Rotor(object):
 class Drone(object):
     """ Class representing a drone.
     """
-    def __init__(self, rotors, pitch, roll, mass, current_height=0):
-        self._rotors = rotors
-        self._pitch = pitch
-        self._roll = roll
-        self._mass = mass
-        self._body_frame = Frame(y=current_height)
+    def __init__(self, flight_time, position, speed, acceleration, body, motion, rotors, ref_frame):
+        self.flight_time = flight_time
+        self.position = position
+        self.speed = speed
+        self.acceleration = acceleration
+        self.body = body
+        self.motion = motion
+        self.rotors = rotors
+        self.ref_frame = ref_frame
     
     @property
     def rotors(self):

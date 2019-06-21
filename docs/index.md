@@ -7,4 +7,8 @@ title: Plane
 
 This is the documentation for the Plane project.
 
-# Getting started
+# Rationale
+
+## What is PLANE?
+
+## How do I install plane?
