@@ -5,8 +5,6 @@ Within these module, the main models used within Plane are defined and described
 """
 import math
 
-from enum import Enum
-
 # TODO these are constants, should be refactored
 gravity = 9.8
 """float: Gravity value, in meters per square second."""
