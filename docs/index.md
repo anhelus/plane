@@ -1,14 +1,5 @@
----
-layout: default
-title: Plane
----
-
 # Introduction
 
-This is the documentation for the Plane project.
+## Quick start
 
-# Rationale
-
-## What is PLANE?
-
-## How do I install plane?
+TODO: INSTALLATION PROCEDURE

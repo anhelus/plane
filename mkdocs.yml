@@ -1,0 +1,24 @@
+site_name: PLANE
+site_url: # TODO
+repo_url: https://github.com/anhelus/plane
+repo_name: 'PLANE'
+site_description: # TODO
+site_author: Angelo Cardellicchio, Piero Boccadoro
+copyright: MIT License
+
+markdown_extensions:
+  - markdown.extensions.attr_list
+  - admonition
+
+extra_css:
+  - css/extra_css
+
+nav:
+  - Introduction: 'index.md'
+  - Reference: 'reference.md'
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - Python

@@ -5,67 +5,22 @@ Within these module, the main models used within Plane are defined and described
 """
 import math
 
-from enum import Enum
-
+# TODO these are constants, should be refactored
 gravity = 9.8
 """float: Gravity value, in meters per square second."""
 air_density = 1.0
 """float: Air density value."""
-
-
-class SpinDirections(Enum):
-    """ Possible spinning direction for each rotor.
-    """
-    CLOCKWISE = 0
-    COUNTER_CLOCKWISE = 1
-
-
-class Frame(object):
-    """ A generic reference frame.
-
-    A reference frame represents a three-dimensional space which can be used 
-    to model the position of an object.
-    """
-    def __init__(self, x=0, y=0, z=0):
-        self._x = x
-        self._y = y
-        self._z = z
-    
-    @property
-    def x(self):
-        """ float: The X-position within the frame. """
-        return self._x
-    
-    @x.setter
-    def x(self, value):
-        self._x = value
-    
-    @property
-    def y(self):
-        """ float: the Y-position within the frame. """
-        return self._y
-    
-    @y.setter
-    def y(self, value):
-        self._y = value
-    
-    @property
-    def z(self):
-        """ float: the Z-position within the frame. """
-        return self._z
-    
-    @z.setter
-    def z(self, value):
-        self._z = value
+eps = 0.0001
+"""float: minimum value """
 
 
 class Rotor(object):
     """ Models a single rotor in a UAV.
     """
     def __init__(self, speed, area, spin_direction):
-        self._speed = speed
-        self._area = area
-        self._spin_direction = spin_direction
+        self.speed = speed
+        self.area = area
+        self.spin_direction = spin_direction
     
     @property
     def speed(self):
@@ -85,10 +40,8 @@ class Rotor(object):
     
     @area.setter
     def area(self, value):
-        if value < 0:
-            raise ValueError('Invalid value for the area of the rotor.')
-        else:
-            self._area = value
+        # TODO add docstring to getter
+        self._area = value if value > 0 else eps
     
     @property
     def spin_direction(self):
@@ -106,12 +59,13 @@ class Rotor(object):
         Returns:
             A float value which reprents rotor's thrust.
         """
-        return (float(air_density) * float(self.area) * float(self.speed**2))
+        return float(air_density) * float(self.area) * float(self.speed**2)
     
     def takeoff(self):
         """ Take-off method.
 
         In take-off mode, the rotor spins in clockwise direction.
+        TODO rename -> this should be applied whenever the rotor increases its speed, probably
         """
         self.spin_direction = SpinDirections.CLOCKWISE
     
@@ -119,6 +73,7 @@ class Rotor(object):
         """ Land method.
 
         In landing mode, the rotor spins in counter-clockwise direction.
+        TODO rename as above
         """
         self.spin_direction = SpinDirections.COUNTER_CLOCKWISE
 
