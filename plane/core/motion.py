@@ -23,13 +23,13 @@ class BaseMotion(object):
     def pos_i(self, value):
         self._pos_i = value
 
-    def compute_new_position(self, t):
+    def update_position(self, t):
         pass
 
 
 class UniformAcceleratedMotion(BaseMotion):
-    def __init__(self, acc, speed_i=0):
-        super().__init__(self)
+    def __init__(self, acc, speed_i=0, time_i=0, pos_i=0):
+        super().__init__(time_i, pos_i)
         self._speed_i = speed_i
         self._acc = acc
     
@@ -49,8 +49,16 @@ class UniformAcceleratedMotion(BaseMotion):
     def acc(self, value):
         self._acc = value
 
-    def compute_new_position(self, t):
+    def update_position(self, t):
         # TODO implement equation
         # TODO test
-        # NOTE this should be extended to three dimensions (i.e. to the whole frame
-        return [(pos + self._speed_i * (t - self.time_i) + 1 / 2 * self.acc(t - self.time_i)) for pos in self.pos_i]
+        # NOTE this should be extended to three dimensions (i.e. to the whole frame)
+        self.pos_i += self.speed_i * (t - self.time_i) + 1 / 2 * self.acc * ((t - self.time_i) ** 2)
+
+
+class ConstantMotion(BaseMotion):
+    pass
+
+
+class RandomMotion(BaseMotion):
+    pass

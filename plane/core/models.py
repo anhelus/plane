@@ -217,3 +217,9 @@ class Drone(object):
             A float representing thrust generated along the Z-axis.
         """
         return self.required_thrust(target_height) * math.cos(self.pitch) * math.cos(self.roll)
+
+
+class Storm(object):
+    def __init__(self, drone_list, min_dist_between_drones):
+        self.drone_list = drone_list
+        self.min_dist_between_drones = min_dist_between_drones
