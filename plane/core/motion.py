@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class BaseMotion(object):
     """ Base class for motion.
     """
@@ -54,6 +57,28 @@ class UniformAcceleratedMotion(BaseMotion):
         # TODO test
         # NOTE this should be extended to three dimensions (i.e. to the whole frame)
         self.pos_i += self.speed_i * (t - self.time_i) + 1 / 2 * self.acc * ((t - self.time_i) ** 2)
+    
+    def compute_direction(self, a, b):
+        """ computes the direction (straight line) to go from a to b"""
+        # line direction
+        return (b.x - a.x, b.y - a.y, b.z - a.z)
+
+    def compute_trajectory_points(self, a, b):
+        # NOTE requires refactoring
+        v = self.compute_direction(a, b)
+        # get a linspace between a.x and b.y
+        # TODO modify granularity (steps in linspace)
+        x_points = np.linspace(a.x, b.x)
+        y_points = np.linspace(a.y, b.y)
+        z_points = np.linspace(a.z, b.z)
+        # NOTE supposed equals
+        # TODO use list comprehension, remove this ugly for
+        out_vec = []
+        for x in x_points:
+            y = (x - a.x) * v[1] / v[2]
+            z = ((y - a.y) * v[2] / v[1]) + a.z
+            out_vec.append(x, y, z)
+        return out_vec
 
 
 class ConstantMotion(BaseMotion):
