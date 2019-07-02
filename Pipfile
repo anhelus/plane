@@ -9,6 +9,7 @@ pytest = "*"
 [packages]
 pylint = "*"
 mkdocs = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"
