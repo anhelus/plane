@@ -62,6 +62,26 @@ class Frame(object):
         self._z = value
 
 
+class InertialFrame(Frame):
+    """ An inertial frame. Embed physics laws and time.
+    """
+    def __init__(self, 
+        x: float = 0., 
+        y: float = 0., 
+        z: float = 0., 
+        time: float = 0.) -> None:
+        super().__init__(self, x, y, z)
+        self.time = time
+    
+    @property
+    def time(self):
+        return self._time
+    
+    @time.setter
+    def time(self, value):
+        self._time = value
+
+
 class Rotor(object):
     """ Models a single rotor in a UAV.
     """
@@ -137,7 +157,9 @@ class Rotor(object):
 class Drone(object):
     """ Class representing a drone.
     """
-    def __init__(self, flight_time, position, speed, acceleration, body, motion, rotors, ref_frame):
+    def __init__(self, 
+        flight_time: float, 
+        position, speed, acceleration, body, motion, rotors, ref_frame):
         self.flight_time = flight_time
         self.position = position
         self.speed = speed
